@@ -8,17 +8,14 @@ pipeline {
                     url: 'https://github.com/Anushagurrala/git-migration.git' 
             }
         }
-        stage('Run Shell Commands') {
+        stage(''Build Docker Image'') {
             steps {
-                    echo "Running some shell commands..."
+                    docker build -t my-nginx-image .
             }
         }
         stage('Deploy Nginx Container') {
             steps {
-                container 'nginx' { 
-                    dockerfilePath 'Dockerfile'
-                    args '--publish 80:80' 
-                }
+                    docker run -d --name my-nginx-container my-nginx-image:latest
             }
         }
     }
