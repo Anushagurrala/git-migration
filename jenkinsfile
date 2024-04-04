@@ -8,7 +8,7 @@ pipeline {
                     url: 'https://github.com/Anushagurrala/git-migration.git' 
             }
         }
-        stage(''Build Docker Image'') {
+        stage('Build Docker Image') {
             steps {
                     docker build -t my-nginx-image .
             }
