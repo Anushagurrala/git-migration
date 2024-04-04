@@ -10,12 +10,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                    sh docker build -t my-nginx-image .
+                    sh 'docker build -t my-nginx-image .'
             }
         }
         stage('Deploy Nginx Container') {
             steps {
-                    sh docker run -d --name my-nginx-container my-nginx-image:latest
+                    sh 'docker run -d --name my-nginx-container my-nginx-image:latest'
             }
         }
     }
