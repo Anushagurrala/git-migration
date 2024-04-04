@@ -1,0 +1,25 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master', 
+                    url: 'https://github.com/your-username/your-repo.git' 
+            }
+        }
+        stage('Run Shell Commands') {
+            steps {
+                    echo "Running some shell commands..."
+            }
+        }
+        stage('Deploy Nginx Container') {
+            steps {
+                container 'nginx' { 
+                    dockerfilePath 'Dockerfile'
+                    args '--publish 80:80' 
+                }
+            }
+        }
+    }
+}
