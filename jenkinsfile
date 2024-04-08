@@ -5,14 +5,14 @@ pipeline {
     stages {
         stage('Calling first groovy') {
             steps {
-                scripts {
+                script {
                     firstGroovy() 
                 }
             }
         }
         stage('Calling second groovy') {
             steps {
-                scripts {
+                script {
                     secondGroovy() 
                 }
             }
