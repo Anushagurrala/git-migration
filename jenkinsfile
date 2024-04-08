@@ -1,22 +1,21 @@
+@Library('FSSRE@main')_
 pipeline {
     agent any 
 
     stages {
-        stage('Checkout Code') {
+        stage('Calling first groovy') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/Anushagurrala/git-migration.git' 
+                scripts {
+                    firstGroovy() 
+                }
             }
         }
-        stage('Executing shell commands') {
+        stage('Calling second groovy') {
             steps {
-                    echo "Executing shell commands.."
+                scripts {
+                    secondGroovy() 
+                }
             }
-        }
-        stage('Deploy Nginx Container') {
-            steps {
-                    sh 'sudo docker run -it --rm -d -p 80:80 --name web nginx'
-            }
-        }
+        }       
     }
 }
